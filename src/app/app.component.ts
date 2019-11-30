@@ -38,7 +38,11 @@ export class AppComponent implements OnInit{
       this.loading=false;
     },
     err => {
-      this.errorMessage = "Could not find this user/repository! Please check again";
+      if (err.status == 401) {
+        this.errorMessage =  "Unauthroized, check your credentials"
+      } else {
+        this.errorMessage = "Could not find this user/repository! Please check again";
+      }
       this.loading=false;
     })
   }
